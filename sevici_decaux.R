@@ -87,13 +87,14 @@ distritos_point <- ggplot(barrios_bicis[1:259, ]) +
         scale_y_continuous(limits = c(0, 1)) +
         facet_grid( ~ DISTRITO_N) +
         theme_ipsum_rc() +
-        theme(
+        theme(  
+                axis.text.x = element_blank(),
                 axis.title = element_blank(),
                 strip.text.x = element_text(size = 11, hjust = 0.5, face = "bold"),
-                panel.grid.major.x = element_line(colour = NA)
-        )
-
-ggsave("./distritos_point.png", plot = distritos_point, width = 50, height = 20, units = "cm", dpi = 800)
+                panel.grid.major.x = element_line(colour = NA),
+                plot.caption = element_text(size = 11, hjust = 0.5)
+        ) +
+        labs(caption = barrios_bicis$req_time[1])
 
 # Dot plot of usage of a given station through time. Meant to be used with many repeated requests
 estacion_point <- ggplot(barrios_bicis[barrios_bicis$number == 19, ]) +
