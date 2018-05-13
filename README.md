@@ -1,4 +1,6 @@
-I created a simple script in R that uses https://api.citybik.es/v2/ API to retrieve and map current usage of bike stations in Seville.
+I created a simple script in R that uses https://api.citybik.es/v2/ API and https://developer.jcdecaux.com/#/opendata/vls?page=getstarted to retrieve and map current usage of bike stations in Seville.
+
+I recommend to use the later.
 
 However I would recommend signing up in https://developer.jcdecaux.com/#/opendata/vls?page=getstarted, get an Api Key and make requests using this uri https://api.jcdecaux.com/vls/v1/stations?contract=Seville&apiKey={}
 
