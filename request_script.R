@@ -6,7 +6,7 @@ if (!dir.exists("./decaux")) {
   dir.create("./decaux")
 } # create folder where to store requests
 
-for (i in seq_along(5*2)) { # every 1/2 hour for 5 hours
+for (i in seq(10)) { # every 1/2 hour for 5 hours
   request <- httr::GET(
     "https://api.jcdecaux.com/vls/v1/stations?contract=Seville&apiKey=90f096efd2e83e1711874c7a60324e41361b964b"
   )
