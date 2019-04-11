@@ -8,11 +8,11 @@ if (!dir.exists("./decaux")) {
 
 for (i in seq(10)) { # every 1/2 hour for 5 hours
   request <- httr::GET(
-    "https://api.jcdecaux.com/vls/v1/stations?contract=Seville&apiKey=90f096efd2e83e1711874c7a60324e41361b964b"
+    "https://api.jcdecaux.com/vls/v1/stations?contract=Seville&apiKey="
   )
   while (status_code(request) != 200) {
     request <- httr::GET(
-      "https://api.jcdecaux.com/vls/v1/stations?contract=Seville&apiKey=90f096efd2e83e1711874c7a60324e41361b964b"
+      "https://api.jcdecaux.com/vls/v1/stations?contract=Seville&apiKey="
     )
 
     Sys.sleep(300)  # if request fails, try again every 5 minutes
