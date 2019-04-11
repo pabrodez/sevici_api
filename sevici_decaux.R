@@ -6,7 +6,7 @@ extrafont::loadfonts(device="win")
 if (!dir.exists("./decaux")) {dir.create("./decaux")} # create folder where to store requests
 
 request <- httr::GET(
-        "https://api.jcdecaux.com/vls/v1/stations?contract=Seville&apiKey=90f096efd2e83e1711874c7a60324e41361b964b")  # check https://api.citybik.es/v2/ 
+        "https://api.jcdecaux.com/vls/v1/stations?contract=Seville&apiKey=")  # check https://api.citybik.es/v2/ 
 
 if (status_code(request) != 200) {
         stop(paste("Client/server error.", "Status =", status_code(request)))
