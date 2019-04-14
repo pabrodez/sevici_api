@@ -1,29 +1,35 @@
+######################################################################
+## This script requests and stores json files from the jcdecaux API
+## every 30 mins
+######################################################################
+
 # libraries
+library(jsonlite)
 library(tidyverse)
 library(httr)
 
-if (!dir.exists("./decaux")) {
-  dir.create("./decaux")
-} # create folder where to store requests
+# folders
+if (!dir.exists("./decaux")) dir.create("./decaux")
 
-for (i in seq(10)) { # every 1/2 hour for 5 hours
+# loop to request and write json file containing info on bike stations at time of request via jcdecaux api
+for (i in seq_len(10)) { # every 1/2 hour for 5 hours. This can be changed as wanted
   request <- httr::GET(
-    "https://api.jcdecaux.com/vls/v1/stations?contract=Seville&apiKey="
+    "https://api.jcdecaux.com/vls/v1/stations?contract=Seville&apiKey=90f096efd2e83e1711874c7a60324e41361b964b"
   )
   while (status_code(request) != 200) {
     request <- httr::GET(
-      "https://api.jcdecaux.com/vls/v1/stations?contract=Seville&apiKey="
+      "https://api.jcdecaux.com/vls/v1/stations?contract=Seville&apiKey=90f096efd2e83e1711874c7a60324e41361b964b"
     )
 
-    Sys.sleep(300)  # if request fails, try again every 5 minutes
+    Sys.sleep(300)  ## repeat every 5 mins while requests fails
   }
 
-  req_content <- httr::content(request, as = "text", encoding = "UTF-8") # Get the content as text. keep json structure
+  req_content <- httr::content(request, as = "text", encoding = "UTF-8")  ## get the content as text and keep json structure
 
-  day_hour <- format.POSIXct(Sys.time(), "%Y-%m-%e %H-%M", tz = "Europe/Madrid") # Create date-time to name each request
+  day_hour <- format.POSIXct(as.POSIXct(Sys.time(), tz = "Europe/Madrid"), "%Y-%m-%e %H-%M", tz = "Europe/Madrid")  ## create date-time to name each request
 
-  write(req_content, file = paste0("./decaux/", day_hour, ".json")) # Save request content
+  write(req_content, file = paste0("./decaux/", day_hour, ".json"))  ## save request content
   
-  Sys.sleep(1800)  # put to sleep for 30 minutes between each iteration
+  Sys.sleep(1800)  ## sleep for 30 mins
 }
 
