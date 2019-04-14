@@ -1,6 +1,6 @@
 ## SEVici stations data
 
-R scripts that use https://developer.jcdecaux.com/#/opendata/vls?page=getstarted to retrieve and map current usage of bike stations in Seville.
+R scripts that use https://developer.jcdecaux.com/#/opendata/vls?page=getstarted to retrieve and map current usage of SEVici bike stations in Seville.
 
 "request_script.R" makes automatic requests every 30 mins.
 "sevici_decaux.R" requests once, reads, formats and plot the stored json file/s.
